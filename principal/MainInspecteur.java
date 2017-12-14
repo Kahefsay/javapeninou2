@@ -3,6 +3,7 @@ package principal;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 
+import debuggeurtextuel.InspecteurObjet;
 import personne.Personne;
 import utilitaires.Keyboard;
 
@@ -27,6 +28,8 @@ public class MainInspecteur {
 		int i=12;
 	
 		// Q1 :
+		
+		InspecteurObjet.inspectObject(v);
 		
 		MainInspecteur.affmain("aff de Object.class");
 		// Déjà fait
@@ -76,6 +79,7 @@ public class MainInspecteur {
 			Keyboard.readForWait("-> return pour continuer");
 			MainInspecteur.affmain("Pour vérifier dernier appel de inspect(i)");		
 			MainInspecteur.affmain(""+int.class.isPrimitive());		
+			
 	}
 	
 	private static void affmain(String s)

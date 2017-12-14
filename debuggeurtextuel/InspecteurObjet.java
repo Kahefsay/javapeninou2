@@ -26,6 +26,24 @@ public class InspecteurObjet {
 	private static void inspectObject (Object o, String dec)
 	{
 		// todo / ICI
+		Class <?> classeDeO = o.getClass();
+		for(Field f : classeDeO.getDeclaredFields()) {
+			InspecteurObjet.afficheInspecteurObjet(dec + "Les attributs");
+			dec += " ";
+			try {
+				f.setAccessible(true);
+				InspecteurObjet.afficheInspecteurObjet(dec + f + "  " + "Valeur : " + f.get(o));
+				if (!Modifier.isStatic(f.getModifiers())) {
+					if (!f.getType().isPrimitive() & !f.getType().isArray()) {
+						System.out.println("on passe ici");
+					}
+				}
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			dec += " ";
+		}
 		
 		
 	}
