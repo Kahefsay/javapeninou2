@@ -1,17 +1,8 @@
 package debuggeurtextuel;
 
 
-import java.io.Serializable;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Vector;
-
-import personne.Personne;
-import utilitaires.Keyboard;
-
 
 public class InspecteurObjet {
 
@@ -27,22 +18,22 @@ public class InspecteurObjet {
 	{
 		// todo / ICI
 		Class <?> classeDeO = o.getClass();
+		
+		InspecteurObjet.afficheInspecteurObjet(dec + "Les attributs");
+		dec += " ";
 		for(Field f : classeDeO.getDeclaredFields()) {
-			InspecteurObjet.afficheInspecteurObjet(dec + "Les attributs");
-			dec += " ";
 			try {
 				f.setAccessible(true);
 				InspecteurObjet.afficheInspecteurObjet(dec + f + "  " + "Valeur : " + f.get(o));
 				if (!Modifier.isStatic(f.getModifiers())) {
 					if (!f.getType().isPrimitive() & !f.getType().isArray()) {
-						System.out.println("on passe ici");
+						InspecteurObjet.inspectObject(f.get(o), dec += " ");
 					}
 				}
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			dec += " ";
 		}
 		
 		

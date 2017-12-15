@@ -1,9 +1,9 @@
 package principal;
 
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 
 import debuggeurtextuel.InspecteurObjet;
+import personne.Adresse;
 import personne.Personne;
 import utilitaires.Keyboard;
 
@@ -28,8 +28,6 @@ public class MainInspecteur {
 		int i=12;
 	
 		// Q1 :
-		
-		InspecteurObjet.inspectObject(v);
 		
 		MainInspecteur.affmain("aff de Object.class");
 		// Déjà fait
@@ -80,6 +78,24 @@ public class MainInspecteur {
 			MainInspecteur.affmain("Pour vérifier dernier appel de inspect(i)");		
 			MainInspecteur.affmain(""+int.class.isPrimitive());		
 			
+		//TP3 Inspecteur d'objet
+			Keyboard.readForWait("-> return pour continuer");
+		Personne p3 = new Personne ("RIQUART", "Damian");
+		Personne p4 = new Personne ("ARGENT", "Edouard");
+		
+		ArrayList <Personne> v2 = new ArrayList<Personne> ();
+		v2.add (p3);
+		v2.add (p4);
+		
+		// Méthode à un ArrayList
+		MainInspecteur.affmain("Inspection de ArrayList<Personne>");
+		InspecteurObjet.inspectObject(v2);
+		Keyboard.readForWait("-> return pour continuer");
+		
+		// Méthode à une Personne
+		p3.ajouteAdr(new Adresse(18, "Rue Sainte Catherine", "31400", "Toulouse"));		
+		MainInspecteur.affmain("Inspection de Personne");
+		InspecteurObjet.inspectObject(p3);
 	}
 	
 	private static void affmain(String s)
